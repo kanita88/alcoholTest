@@ -22,6 +22,8 @@ class AlcoolViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet weak var tauxAlcoolLabel: UILabel!
     @IBOutlet weak var alcoolProgressView: UIProgressView!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet var supprimeButtonLabel: [UIButton]!
+    
     
     
     var user = User()
@@ -35,6 +37,27 @@ class AlcoolViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         // Do any additional setup after loading the view.
         self.heuresPickerView.dataSource = self
         self.heuresPickerView.delegate = self
+        
+        self.biereAddButton.layer.cornerRadius = biereAddButton.frame.size.width/2
+        self.biereAddButton.clipsToBounds = true
+        
+        self.vinAddButton.layer.cornerRadius = vinAddButton.frame.size.width/2
+        self.vinAddButton.clipsToBounds = true
+        
+        self.whiskyAddButton.layer.cornerRadius = whiskyAddButton.frame.size.width/2
+        self.whiskyAddButton.clipsToBounds = true
+        
+        self.portoAddButton.layer.cornerRadius = portoAddButton.frame.size.width/2
+        self.portoAddButton.clipsToBounds = true
+        
+        self.alcoolProgressView.transform = alcoolProgressView.transform.scaledBy(x: 1, y: 9)
+        
+        for button in supprimeButtonLabel{
+            button.layer.cornerRadius = button.frame.size.width/1
+            button.clipsToBounds = true
+        }
+        
+        
         
         
         user.nbOfGlasses = [0,0,0,0]
@@ -99,7 +122,9 @@ class AlcoolViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
             
         alcoolProgressView.setProgress(barProgress, animated: true)
         
-        
+        if  user.computeAlcooholRate(drinks: self.drinks) >= firstAlcooholRate {
+            alcoolProgressView.progressTintColor = UIColor.orange
+          }
         }
     
     @IBAction func profileButtonPressed(_ sender: UIBarButtonItem) {

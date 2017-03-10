@@ -59,6 +59,7 @@ class ProfilViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         user.weight = 40 + poidsPickerView.selectedRow(inComponent: 0)
+        self.poidsKgLabel.text = "Votre poids est de \(user.weight)"
     }
     
     //poidsKgLabel.textLabel.text = poids[IndexPath.row]
